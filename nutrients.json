@@ -1,0 +1,167 @@
+[
+  {
+    "id": "protein",
+    "name": "Protein",
+    "category": "macronutrient",
+    "unit": "g",
+    "watch": false,
+    "whatIsIt": "A macronutrient made of amino acids that the body uses as a building material.",
+    "whyNeeded": "Supports the growth and repair of muscles, skin, and other tissues, and is used to make enzymes and hormones.",
+    "foodSources": ["dal", "paneer", "egg", "chicken-breast", "milk", "chickpeas", "curd", "almonds", "peanut-butter", "soy-milk"],
+    "generalNote": "Adults commonly reference roughly 0.8g per kg of body weight per day as a general baseline; needs vary by age, activity, and individual circumstances."
+  },
+  {
+    "id": "carbohydrates",
+    "name": "Carbohydrates",
+    "category": "macronutrient",
+    "unit": "g",
+    "watch": false,
+    "whatIsIt": "The body's primary energy source, found in grains, fruits, vegetables, and legumes.",
+    "whyNeeded": "Fuels daily activity and brain function; whole-food sources also bring fiber and micronutrients along with the energy.",
+    "foodSources": ["rice", "roti", "ragi", "oats", "potato", "banana", "chickpeas"],
+    "generalNote": "Whole grains, fruits, and legumes are commonly favored over refined/added-sugar sources for the same amount of carbohydrate."
+  },
+  {
+    "id": "fat",
+    "name": "Fat",
+    "category": "macronutrient",
+    "unit": "g",
+    "watch": false,
+    "whatIsIt": "A concentrated energy source that also helps the body absorb certain vitamins.",
+    "whyNeeded": "Needed for hormone production, cell structure, and absorbing fat-soluble vitamins A, D, E, and K.",
+    "foodSources": ["almonds", "peanut-butter", "paneer", "milk", "egg"],
+    "generalNote": "Sources like nuts, seeds, and dairy provide fat along with other nutrients, unlike isolated oils or fried foods."
+  },
+  {
+    "id": "fiber",
+    "name": "Fiber",
+    "category": "macronutrient",
+    "unit": "g",
+    "watch": false,
+    "whatIsIt": "The part of plant food the body doesn't fully digest.",
+    "whyNeeded": "Supports digestion and regularity, and helps with a feeling of fullness after meals.",
+    "foodSources": ["dal", "chickpeas", "ragi", "oats", "apple", "banana", "roti", "potato"],
+    "generalNote": "Legumes, whole grains, fruits, and vegetables are the most reliable everyday sources."
+  },
+  {
+    "id": "calcium",
+    "name": "Calcium",
+    "category": "mineral",
+    "unit": "mg",
+    "watch": false,
+    "whatIsIt": "A mineral stored mainly in bones and teeth.",
+    "whyNeeded": "Supports bone and teeth structure, and plays a role in muscle and nerve function.",
+    "foodSources": ["milk", "curd", "paneer", "ragi", "soy-milk", "spinach"],
+    "generalNote": "Dairy foods, ragi, and fortified plant milks are commonly relied-on everyday sources."
+  },
+  {
+    "id": "iron",
+    "name": "Iron",
+    "category": "mineral",
+    "unit": "mg",
+    "watch": false,
+    "whatIsIt": "A mineral that is part of hemoglobin, the protein in red blood cells that carries oxygen.",
+    "whyNeeded": "Needed for oxygen transport in the blood and everyday energy levels.",
+    "foodSources": ["dal", "spinach", "chickpeas", "chicken-breast", "ragi", "egg"],
+    "generalNote": "Pairing iron-containing plant foods with a source of vitamin C can help the body absorb the iron."
+  },
+  {
+    "id": "potassium",
+    "name": "Potassium",
+    "category": "mineral",
+    "unit": "mg",
+    "watch": false,
+    "whatIsIt": "A mineral that helps balance fluids in the body.",
+    "whyNeeded": "Supports normal muscle and nerve function, and helps balance the effects of sodium.",
+    "foodSources": ["potato", "banana", "spinach", "dal", "chickpeas"],
+    "generalNote": "Fruits, vegetables, and legumes are the main everyday sources."
+  },
+  {
+    "id": "magnesium",
+    "name": "Magnesium",
+    "category": "mineral",
+    "unit": "mg",
+    "watch": false,
+    "whatIsIt": "A mineral involved in hundreds of chemical reactions in the body.",
+    "whyNeeded": "Supports muscle and nerve function, and energy production.",
+    "foodSources": ["spinach", "almonds", "ragi", "chickpeas", "oats", "peanut-butter"],
+    "generalNote": "Leafy greens, nuts, and whole grains are commonly relied-on sources."
+  },
+  {
+    "id": "zinc",
+    "name": "Zinc",
+    "category": "mineral",
+    "unit": "mg",
+    "watch": false,
+    "whatIsIt": "A trace mineral needed in small amounts.",
+    "whyNeeded": "Supports immune function and wound healing.",
+    "foodSources": ["chicken-breast", "chickpeas", "paneer", "almonds", "egg"],
+    "generalNote": "Legumes, dairy, nuts, and meat/poultry are common everyday sources."
+  },
+  {
+    "id": "vitaminA",
+    "name": "Vitamin A",
+    "category": "vitamin",
+    "unit": "mcg",
+    "watch": false,
+    "whatIsIt": "A fat-soluble vitamin.",
+    "whyNeeded": "Supports vision, skin, and immune function.",
+    "foodSources": ["spinach", "milk", "paneer", "egg", "soy-milk"],
+    "generalNote": "Leafy greens and dairy are common everyday sources."
+  },
+  {
+    "id": "vitaminC",
+    "name": "Vitamin C",
+    "category": "vitamin",
+    "unit": "mg",
+    "watch": false,
+    "whatIsIt": "A water-soluble vitamin and antioxidant.",
+    "whyNeeded": "Supports immune function, skin health, and helps the body absorb iron from plant foods.",
+    "foodSources": ["potato", "apple", "banana", "spinach"],
+    "generalNote": "Fruits and vegetables are the main everyday sources; this vitamin is sensitive to prolonged cooking."
+  },
+  {
+    "id": "vitaminD",
+    "name": "Vitamin D",
+    "category": "vitamin",
+    "unit": "mcg",
+    "watch": false,
+    "whatIsIt": "A fat-soluble vitamin the body can also make from sunlight exposure.",
+    "whyNeeded": "Supports calcium absorption and bone health.",
+    "foodSources": ["milk", "egg", "soy-milk"],
+    "generalNote": "Fortified milk and moderate sunlight exposure are common everyday sources."
+  },
+  {
+    "id": "vitaminB12",
+    "name": "Vitamin B12",
+    "category": "vitamin",
+    "unit": "mcg",
+    "watch": false,
+    "whatIsIt": "A vitamin found mainly in animal foods and fortified products.",
+    "whyNeeded": "Supports nerve function and the formation of red blood cells.",
+    "foodSources": ["milk", "curd", "egg", "paneer", "chicken-breast", "soy-milk"],
+    "generalNote": "People eating little or no animal products often rely on fortified foods for this nutrient."
+  },
+  {
+    "id": "sodium",
+    "name": "Sodium",
+    "category": "watch",
+    "unit": "mg",
+    "watch": true,
+    "whatIsIt": "A mineral found naturally in food and added heavily during processing and cooking.",
+    "whyNeeded": "Needed in small amounts for fluid balance and nerve function, but commonly consumed in excess.",
+    "foodSources": ["curd", "peanut-butter", "spinach"],
+    "generalNote": "Processed, packaged, and restaurant foods are the biggest everyday contributors — often more than salt added at home."
+  },
+  {
+    "id": "addedSugar",
+    "name": "Added sugar",
+    "category": "watch",
+    "unit": "g",
+    "watch": true,
+    "whatIsIt": "Sugar added to food during processing or preparation, separate from sugars naturally present in fruit or milk.",
+    "whyNeeded": "Not required by the body; commonly tracked to help limit intake rather than to ensure adequacy.",
+    "foodSources": [],
+    "generalNote": "Sweetened beverages, desserts, and packaged snacks are the most common everyday sources."
+  }
+]
