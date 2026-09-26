@@ -1,0 +1,235 @@
+openapi: 3.1.0
+
+info:
+  title: NutriScope API
+  version: 1.0.0
+  description: |
+    Internal API for NutriScope's educational nutrient assistant.
+
+    The assistant explains everyday foods and nutrients, including common
+    Indian foods. Responses are educational and must not be treated as
+    medical advice.
+
+servers:
+  - url: /
+    description: Current NutriScope deployment
+  - url: https://id-preview--d18bc171-83d1-45fb-9587-448c048209be.lovable.app
+    description: NutriScope preview
+
+tags:
+  - name: Nutrient Bot
+    description: AI-powered educational food and nutrient guidance
+
+paths:
+  /api/chat:
+    post:
+      operationId: chatWithNutrientBot
+      tags:
+        - Nutrient Bot
+      summary: Stream an answer from the NutriScope Nutrient Bot
+      description: |
+        Sends a conversation to the NutriScope Nutrient Bot and returns the
+        assistant's answer as a UTF-8 plain-text stream.
+
+        The service uses up to the last 20 messages supplied in the request.
+        Stream chunks must be concatenated in the order received to reconstruct
+        the complete Markdown-formatted response.
+
+        No user authentication is currently required.
+      security: []
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatRequest"
+            examples:
+              foodQuestion:
+                summary: Ask about a meal
+                value:
+                  messages:
+                    - role: user
+                      content: I ate rice and dal. What nutrients did I get?
+              conversation:
+                summary: Continue an existing conversation
+                value:
+                  messages:
+                    - role: user
+                      content: What are some good calcium sources?
+                    - role: assistant
+                      content: |
+                        Useful calcium sources include milk, curd, paneer,
+                        ragi, sesame seeds, and some leafy vegetables.
+                    - role: user
+                      content: Which of those are dairy-free?
+
+      responses:
+        "200":
+          description: |
+            The assistant's answer as a chunked plain-text stream. The text
+            can contain Markdown, including lists and emphasis.
+          headers:
+            Cache-Control:
+              description: Indicates that the streamed answer must not be cached.
+              schema:
+                type: string
+                const: no-cache
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: |
+                  Incrementally streamed UTF-8 answer. Concatenate all received
+                  chunks to obtain the full response.
+              examples:
+                answer:
+                  value: |
+                    Rice and dal together provide:
+
+                    - **Protein:** Dal supplies most of the protein.
+                    - **Carbohydrates:** Rice is the main source.
+                    - **Fiber:** Dal provides fiber.
+                    - **Iron and magnesium:** Present in varying amounts in dal.
+
+        "400":
+          description: No conversation messages were provided.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                noMessages:
+                  value:
+                    error: No messages provided.
+
+        "402":
+          description: AI usage credits are unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                creditsUnavailable:
+                  value:
+                    error: AI credits have run out for this workspace.
+
+        "429":
+          description: The nutrient assistant is temporarily rate-limited or busy.
+          headers:
+            Retry-After:
+              description: |
+                Optional number of seconds to wait before retrying. This header
+                is not guaranteed to be present.
+              schema:
+                type: integer
+                minimum: 1
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                busy:
+                  value:
+                    error: The nutrient bot is busy right now. Please try again in a moment.
+
+        "500":
+          description: |
+            The AI service is not configured or an unexpected internal error
+            occurred.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                notConfigured:
+                  value:
+                    error: AI is not configured.
+                unavailable:
+                  value:
+                    error: The nutrient bot could not answer right now.
+
+        default:
+          description: Error returned by the upstream AI service.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+      x-nutriscope-behavior:
+        response-format: plain-text-stream
+        markdown-supported: true
+        retained-request-messages: 20
+        medical-advice: prohibited
+        tracked-nutrients:
+          - protein
+          - carbohydrates
+          - fat
+          - fiber
+          - calcium
+          - iron
+          - potassium
+          - magnesium
+          - zinc
+          - vitamin A
+          - vitamin C
+          - vitamin D
+          - vitamin B12
+          - sodium
+          - added sugar
+          - water
+        watch-intake-nutrients:
+          - sodium
+          - added sugar
+
+components:
+  schemas:
+    ChatRequest:
+      type: object
+      required:
+        - messages
+      additionalProperties: false
+      properties:
+        messages:
+          type: array
+          minItems: 1
+          description: |
+            Conversation history in chronological order. The service uses only
+            the last 20 messages if more than 20 are supplied.
+          items:
+            $ref: "#/components/schemas/ChatMessage"
+
+    ChatMessage:
+      type: object
+      required:
+        - role
+        - content
+      additionalProperties: false
+      properties:
+        role:
+          type: string
+          enum:
+            - user
+            - assistant
+          description: The author of the message.
+        content:
+          type: string
+          minLength: 1
+          description: Plain text or Markdown message content.
+      examples:
+        - role: user
+          content: What nutrients are present in milk?
+        - role: assistant
+          content: Milk commonly provides calcium, protein, vitamin B12, and potassium.
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      additionalProperties: false
+      properties:
+        error:
+          type: string
+          description: A user-safe description of the failure.
+      example:
+        error: The nutrient bot could not answer right now.
